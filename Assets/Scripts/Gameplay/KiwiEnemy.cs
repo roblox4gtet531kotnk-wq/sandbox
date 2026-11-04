@@ -644,6 +644,15 @@ namespace KiviGun
                     _velocity.y = 0f;
                 }
             }
+
+            // Страховка: выпрыгнули за край уровня / луч не достал до пола —
+            // не падаем в бесконечность (выглядело как «киви сами исчезают»),
+            // а возвращаемся на своё место спавна.
+            if (transform.position.y < -8f)
+            {
+                transform.position = new Vector3(_homePosition.x, _homePosition.y + 1f, _homePosition.z);
+                _velocity = Vector3.zero;
+            }
         }
 
         private void Attack()

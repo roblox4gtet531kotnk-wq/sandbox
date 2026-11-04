@@ -57,6 +57,16 @@ namespace KiviGun
             }
             _active = this;
 
+            // Защита от запуска сразу в уровень: если сцена Game открылась без
+            // запроса из меню (сборка началась с неё или открыта в редакторе),
+            // отправляем игрока в главное меню.
+            if (mode == BootMode.Game && !SceneFlow.LevelRequested)
+            {
+                Debug.Log("[KiviGun] Уровень запущен без запроса из меню — возврат в главное меню.");
+                SceneFlow.GoToMenu();
+                return;
+            }
+
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             QualitySettings.vSyncCount = 0;
             Application.runInBackground = false;

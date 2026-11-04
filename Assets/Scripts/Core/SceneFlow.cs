@@ -43,12 +43,14 @@ namespace KiviGun
 
         public static void GoToMenu()
         {
+            LevelRequested = false;
             GetOrCreate().LoadScene(MenuScene);
         }
 
         public static void GoToLevel(int levelIndex)
         {
             NextLevelIndex = Mathf.Clamp(levelIndex, 0, GameConfig.LevelCount - 1);
+            LevelRequested = true;
             GetOrCreate().LoadScene(GameScene);
         }
 

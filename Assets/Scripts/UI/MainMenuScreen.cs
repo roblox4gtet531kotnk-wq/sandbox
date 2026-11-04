@@ -53,7 +53,7 @@ namespace KiviGun
             Text title = UIBuilder.Label(root, GameConfig.GameTitle, 96, Theme.Text, TextAnchor.MiddleCenter,
                 new Vector2(1200f, 140f), new Vector2(0f, 400f), FontStyle.Bold);
             title.supportRichText = true;
-            title.text = "<color=#8CC620>КИВИ</color> <color=#F7BF3F>ГАН</color>";
+            title.text = "<color=#A8E63C>КИВИ</color> <color=#FFC93F>ГАН</color>";
             _titleText = title;
 
             // Мягкое появление всей панели меню + лёгкое «дыхание» заголовка.
@@ -70,17 +70,19 @@ namespace KiviGun
                                                " УРОВНЯ • УТКА ПРОТИВ КИВИ-ПТИЦ", 24, Theme.TextDim,
                 TextAnchor.MiddleCenter, new Vector2(1200f, 40f), new Vector2(0f, 310f));
 
-            // --- Кнопки ---
+            // --- Кнопки --- колонка СЛЕВА, как в меню FNAF: вертикальный список
+            // у левого края экрана, а справа — диорама с персонажами.
+            const float menuX = -430f;
             float startY = 180f;
-            AddMenuButton(root, "ОДИНОЧНАЯ ИГРА", new Vector2(560f, 92f), new Vector2(0f, startY), OpenLevelSelect,
+            AddMenuButton(root, "ОДИНОЧНАЯ ИГРА", new Vector2(560f, 92f), new Vector2(menuX, startY), OpenLevelSelect,
                 IconFactory.Play(), Theme.Accent);
-            AddMenuButton(root, "МУЛЬТИПЛЕЕР (В РАЗРАБОТКЕ)", new Vector2(560f, 82f), new Vector2(0f, startY - 106f),
+            AddMenuButton(root, "МУЛЬТИПЛЕЕР (В РАЗРАБОТКЕ)", new Vector2(560f, 82f), new Vector2(menuX, startY - 106f),
                 () => ToastManager.GetOrCreate().Show("Мультиплеер уже в разработке!"), null, Theme.PanelLight);
-            AddMenuButton(root, "МАГАЗИН", new Vector2(560f, 92f), new Vector2(0f, startY - 212f), OpenShop,
+            AddMenuButton(root, "МАГАЗИН", new Vector2(560f, 92f), new Vector2(menuX, startY - 212f), OpenShop,
                 IconFactory.KiwiSlice(), Theme.PanelLight);
-            AddMenuButton(root, "ДОСТИЖЕНИЯ", new Vector2(560f, 82f), new Vector2(0f, startY - 318f), OpenAchievements,
+            AddMenuButton(root, "ДОСТИЖЕНИЯ", new Vector2(560f, 82f), new Vector2(menuX, startY - 318f), OpenAchievements,
                 IconFactory.Trophy(), Theme.PanelLight);
-            AddMenuButton(root, "РАЗРАБОТЧИКИ", new Vector2(560f, 82f), new Vector2(0f, startY - 424f), OpenDevelopers,
+            AddMenuButton(root, "РАЗРАБОТЧИКИ", new Vector2(560f, 82f), new Vector2(menuX, startY - 424f), OpenDevelopers,
                 IconFactory.Duck(), Theme.PanelLight);
 
             // Валюта
