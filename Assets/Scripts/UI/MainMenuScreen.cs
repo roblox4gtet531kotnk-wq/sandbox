@@ -60,10 +60,10 @@ namespace KiviGun
             var entrance = root.gameObject.AddComponent<MenuEntranceAnimation>();
             entrance.SetTitle(title.transform as RectTransform);
 
-            // Заголовок слегка «мерцает» — атмосфера ночного хоррора (5 ночей).
+            // Лёгкая ровная пульсация заголовка — чистый «КИВИ ГАН» без мерцания.
             var titleTween = title.transform.gameObject.AddComponent<UiTween>();
-            titleTween.mode = UiTween.Mode.Flicker;
-            titleTween.amplitude = 0.03f;
+            titleTween.mode = UiTween.Mode.Pulse;
+            titleTween.amplitude = 0.035f;
             titleTween.speed = 1.6f;
 
             _subtitleText = UIBuilder.Label(root, "ВЫДЕРЖИ НОЧЬ • " + GameConfig.LevelCount +
