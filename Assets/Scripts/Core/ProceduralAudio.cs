@@ -474,6 +474,20 @@ namespace KiviGun
                     }
                     break;
                 }
+                case Sfx.Laugh:
+                {
+                    // «Хи-хи-хи» — короткие всплески тона с вибрато, спускающиеся вниз.
+                    for (int i = 0; i < count; i++)
+                    {
+                        float t = i / (float)SampleRate;
+                        float burst = Mathf.Floor(t / 0.16f);          // номер «хи"
+                        float local = t - burst * 0.16f;
+                        float f = (520f - burst * 70f) * (1f + 0.06f * Mathf.Sin(2f * Mathf.PI * 9f * t));
+                        float env = Mathf.Exp(-local * 18f) * Mathf.Min(1f, local * 60f) * Mathf.Exp(-t * 1.2f);
+                        buf[i] = Mathf.Sin(2f * Mathf.PI * f * t) * env * 0.5f;
+                    }
+                    break;
+                }
                 case Sfx.Pickup:
                 {
                     int[] steps = { 880, 1174, 1568 };

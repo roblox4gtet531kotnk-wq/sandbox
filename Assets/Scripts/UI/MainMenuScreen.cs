@@ -106,6 +106,19 @@ namespace KiviGun
 
             // Появление меню
             StartCoroutine(IntroAnimation());
+
+            // Иногда в меню раздаётся тихий «смех» — отсылка к хоррор-fangame.
+            StartCoroutine(AmbientLaugh());
+        }
+
+        /// <summary>Случайный тихий смех каждые 8–18 секунд.</summary>
+        private IEnumerator AmbientLaugh()
+        {
+            while (true)
+            {
+                yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(8f, 18f));
+                AudioManager.Instance?.PlaySfx(ProceduralAudio.Sfx.Laugh, 0.25f, UnityEngine.Random.Range(0.85f, 1.15f));
+            }
         }
 
         private void AddMenuButton(RectTransform parent, string text, Vector2 size, Vector2 position,
