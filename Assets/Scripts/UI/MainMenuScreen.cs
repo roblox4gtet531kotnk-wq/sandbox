@@ -60,13 +60,13 @@ namespace KiviGun
             var entrance = root.gameObject.AddComponent<MenuEntranceAnimation>();
             entrance.SetTitle(title.transform as RectTransform);
 
-            // Лёгкая пульсация заголовка
+            // Заголовок слегка «мерцает» — атмосфера ночного хоррора (5 ночей).
             var titleTween = title.transform.gameObject.AddComponent<UiTween>();
-            titleTween.mode = UiTween.Mode.Pulse;
-            titleTween.amplitude = 0.035f;
+            titleTween.mode = UiTween.Mode.Flicker;
+            titleTween.amplitude = 0.03f;
             titleTween.speed = 1.6f;
 
-            _subtitleText = UIBuilder.Label(root, "ОДИНОЧНАЯ ИГРА • " + GameConfig.LevelCount +
+            _subtitleText = UIBuilder.Label(root, "ВЫДЕРЖИ НОЧЬ • " + GameConfig.LevelCount +
                                                " УРОВНЯ • УТКА ПРОТИВ КИВИ-ПТИЦ", 24, Theme.TextDim,
                 TextAnchor.MiddleCenter, new Vector2(1200f, 40f), new Vector2(0f, 310f));
 
